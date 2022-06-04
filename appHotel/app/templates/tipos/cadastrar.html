@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load meus_filtros %}
+
+{% block title %} Tipos de Acomodações {% endblock title %}
+
+{% block content %}
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title">Tipos de Acomodações</h3>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="card-body">
+      <div class="form-group">
+        {{form_tiposAcomodacao.descricao.errors}}
+        <label for="descricao">Descrição </label>
+        {{form_tiposAcomodacao.descricao|addclass:'form-control'}}
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

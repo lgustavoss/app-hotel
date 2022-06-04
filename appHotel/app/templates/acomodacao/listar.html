@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% block title%} Listagem de Clientes {% endblock title %}
+
+{% block content %}
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title">Listagem de Acomodações</h3>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th style="width: 40px">Unidade:</th>
+          <th>Tipo:</th>
+          <th>Andar:</th>
+          <th>Ramal:</th>
+          <th>Capacidade:</th>
+          <th>Valor:</th>
+          <th>Status:</th>
+          <th style="width: 40px">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for acomodacao in acomodacoes %}
+        <tr>
+          <td>{{acomodacao.unidade}}</td>
+          <td>{{acomodacao.tipo}}</td>
+          <td>{{acomodacao.andar}}</td>
+          <td>{{acomodacao.ramal}}</td>
+          <td>{{acomodacao.capacidade}}</td>
+          <td>{{acomodacao.valor}}</td>
+          <td>{{acomodacao.status}}</td>
+          <td>
+            <a href="{% url 'editar_acomodacao' acomodacao.id %}"><ion-icon name="pencil-outline">Editar</ion-icon></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <hr />
+    <a href="{% url 'acomodacao_cadastrar' %}">
+      <button class="btn btn-primary">Nova Acomodação</button>
+    </a>
+  </div>
+</div>
+
+{% endblock content %}

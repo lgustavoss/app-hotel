@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+
+{% block title%}
+Listagem dos tipos de Acomodações
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title">Listagem dos tipos de Acomodações</h3>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Descrição:</th>
+          <th style="width: 40px">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tiposAcomodacao in tiposAcomodacoes %}
+        <tr>
+          <td>{{tiposAcomodacao.descricao}}</td>
+          <td>
+            <a href="{% url 'editar_tipos' tiposAcomodacao.id %}">Editar</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <hr>
+        <a href="{% url 'cadastrar_tipos' %}">
+            <button class="btn btn-primary">Novo Tipo</button>
+        </a>
+  </div>
+</div>
+
+{% endblock content %}
