@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 {% extends 'adminlte/base.html' %}
-<html lang="pt-br" style="height: auto;">
+
+<html lang="pt-br" style="height: auto">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %} {% endblock title %}</title>
   </head>
   <body>
@@ -12,6 +13,12 @@
     {% block javascript %} {{block.super}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+    ></script>
+
     <script>
       var options = {
         onKeyPress: function (cpf, ev, el, op) {
@@ -25,9 +32,52 @@
         : $("#id_cpf_cnpj").mask("000.000.000-00#", options);
 
       $("#id_telefone").mask("(00) 0000-00009");
-      $("#id_valor").mask('#.##0,00', {reverse: true});
+      $("#id_valor").mask("#.##0,00", { reverse: true });
     </script>
 
-    {% endblock javascript %}
+    <script>
+      function atualizarDataDinamico(id_entrada, id_saida, id_qnt_diarias) {
+        // Calcuando os dias da diárias
+        entrada = $("#id_entrada").val(); //Recebendo a data de entrada
+        saida = $("#id_saida").val(); // Recebendo a data de saida
+        diferenca = moment(saida, "YYYY/MM/DD").diff(
+          moment(entrada, "YYYY/MM/DD")
+        ); // Calculando a diferença entre as datas
+        dias = moment.duration(diferenca).asDays(); // Convertendo a diferença para dias
+
+        //Testando se a diferença retorna um valor
+        if (!isNaN(dias)) return $("#id_qnt_diarias").val(dias); //Inserindo o valor das diárias no campo
+      }
+
+      function atualizarTotalDinamico(
+        id_qnt_diarias,
+        id_valor_diaria,
+        id_total_diaria
+      ) {
+        //Calculando o valor total das diárias
+        id_qnt_diarias = $("#id_qnt_diarias").val(); // Recebendo a quantidade de diárias
+        id_valor_diaria = $("#id_valor_diaria").val(); // Recebendo o valor de uma diária
+        dias = parseFloat(id_qnt_diarias.replace(",", ".")); // Convertendo a virgula em ponto
+        valor_dia = parseFloat(id_valor_diaria.replace(",", ".")); // Convertendo a virgula em ponto
+        total = parseFloat(dias * valor_dia).toFixed(2); // Calculando o valor total das diárias
+
+        //Testando se a multiplicação retorna um número
+        if (!isNaN(total))
+          return $("#id_total_diaria").val(total.replace(".", ",")); //Exibindo o valor no campo de total da diária
+      }
+    </script>
+    <script type="text/javascript">
+            function bloquearInput(){
+                var input = document.getElementById('id_total_diaria');
+    
+                if(input.readOnly){
+                    input.readOnly = false;
+                }else{
+                    input.readOnly = true;
+                }
+    
+            }
+        </script>
+    > {% endblock javascript %}
   </body>
 </html>

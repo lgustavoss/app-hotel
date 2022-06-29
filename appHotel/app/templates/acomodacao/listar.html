@@ -1,5 +1,5 @@
 {% extends 'index.html' %}
-{% block title%} Listagem de Clientes {% endblock title %}
+{% block title%} Listagem de Acomodações {% endblock title %}
 
 {% block content %}
 <div class="card card-primary">
@@ -17,8 +17,9 @@
           <th>Ramal:</th>
           <th>Capacidade:</th>
           <th>Valor:</th>
-          <th>Status:</th>
-          <th style="width: 40px">Ações</th>
+          <th style="width: 110px">Status:</th>
+          <th style="width: 50px">Situação:</th>
+          <th style="width: 20px">Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -30,16 +31,33 @@
           <td>{{acomodacao.ramal}}</td>
           <td>{{acomodacao.capacidade}}</td>
           <td>{{acomodacao.valor}}</td>
-          <td>{{acomodacao.status}}</td>
           <td>
-            <a href="{% url 'editar_acomodacao' acomodacao.id %}"><ion-icon name="pencil-outline">Editar</ion-icon></a>
+          {% if acomodacao.status == 'Livre' %}
+            <span style="width: 110px" class="badge bg-success">{{acomodacao.status}}</span>
+          {% elif acomodacao.status == 'Reservado' %}
+            <span style="width: 110px" class="badge bg-warning">{{acomodacao.status}}</span>
+          {% elif acomodacao.status == 'Ocupado' %}
+            <span style="width: 110px" class="badge bg-danger">{{acomodacao.status}}</span>
+          {% elif acomodacao.status == 'Em manutenção' %}
+            <span style="width: 110px" class="badge bg-info">{{acomodacao.status}}</span>
+          {% endif %}
+          </td>
+          <td>
+          {% if acomodacao.situacao == 'Ativo' %}
+            <span style="width: 110px" class="badge bg-primary">{{acomodacao.situacao}}</span>
+          {% elif acomodacao.situacao == 'Inativo' %}
+            <span style="width: 110px" class="badge bg-secondary">{{acomodacao.situacao}}</span>
+          {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'editar_acomodacao' acomodacao.id %}"><i class="fas fa-pencil-alt fa-pull-right"></i></a>
           </td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
     <hr />
-    <a href="{% url 'acomodacao_cadastrar' %}">
+    <a href="{% url 'cadastrar_acomodacao' %}">
       <button class="btn btn-primary">Nova Acomodação</button>
     </a>
   </div>

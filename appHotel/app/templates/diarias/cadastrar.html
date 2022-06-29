@@ -1,0 +1,102 @@
+{% extends 'index.html' %} 
+{% load meus_filtros %} 
+{% load bootstrap4 %}
+{%block title %} Cadastro de Diárias {% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Cadastro de Diárias</h3>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="card-body">
+        <div class="row" placeholder=".col-12">
+          <div class="col-sm">
+            <div class="form-group">
+              {{form_diarias.cliente.errors}}
+              <label>Nome do Cliente: </label>
+              {{form_diarias.cliente|addclass:'form-control'}}
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="form-group">
+              {{form_diarias.unidade.errors}}
+              <label for="unidade">Unidade: </label>
+              {{form_diarias.unidade|addclass:'form-control'}}
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="form-group">
+              {{form_diarias.hospedes.errors}}
+              <label for="hospedes">Hospedes: </label>
+              {{form_diarias.hospedes|addclass:'form-control'}}
+            </div>
+          </div>
+        </div>
+        <div class="row" placeholder=".col-12">
+          <div class="col-sm">
+            <div class="form-group">
+              {{form_diarias.entrada.errors}}
+              <label>Data de Entrada:</label>
+              {{form_diarias.entrada|addclass:'form-control'}}
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="form-group">
+              {{form_diarias.saida.errors}}
+              <label for="saida">Data de Saida: </label>
+              {{form_diarias.saida|addclass:'form-control'}}
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="form-group">
+              {{form_diarias.qnt_diarias.errors}}
+              <label for="qnt_diarias">Total de diárias: </label>
+              {{form_diarias.qnt_diarias|addclass:'form-control'}}
+            </div>
+          </div>
+        </div>
+        <div class="row" placeholder=".col-12">
+          <div class="col-sm">
+            <div class="form-group">
+              {{form_diarias.valor_diaria.errors}}
+              <label for="valor_diaria">Valor da diária: </label>
+              {{form_diarias.valor_diaria|addclass:'form-control'}}
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="form-group">
+              {{form_diarias.total_diaria.errors}}
+              <label for="total_diaria">Total das diárias: </label>
+              {{form_diarias.total_diaria|addclass:'form-control'}}
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="form-group">
+              {{form_diarias.adiantamento.errors}}
+              <label for="adiantamento">Adiantamento: </label>
+              {{form_diarias.adiantamento|addclass:'form-control'}}
+            </div>
+          </div>
+        </div>
+        <div class="row" placeholder=".col-12">
+          <div class="col-sm">
+            <div class="form-group">
+              {{form_diarias.observacao.errors}}
+              <label for="observacao">Observacao: </label>
+              {{form_diarias.observacao|addclass:'form-control'}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content%}

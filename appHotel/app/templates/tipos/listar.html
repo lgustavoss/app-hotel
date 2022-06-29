@@ -18,7 +18,7 @@ Listagem dos tipos de Acomodações
       <thead>
         <tr>
           <th>Descrição:</th>
-          <th style="width: 40px">Ações</th>
+          <th style="width: 25px">Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -26,7 +26,7 @@ Listagem dos tipos de Acomodações
         <tr>
           <td>{{tiposAcomodacao.descricao}}</td>
           <td>
-            <a href="{% url 'editar_tipos' tiposAcomodacao.id %}">Editar</a>
+            <a href="{% url 'editar_tipos' tiposAcomodacao.id %}"><i class="fas fa-pencil-alt fa-pull-right"></i></a>
           </td>
         </tr>
         {% endfor %}

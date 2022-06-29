@@ -1,4 +1,5 @@
 from django import template
+from ..models import Acomodacao
 
 register = template.Library()
 

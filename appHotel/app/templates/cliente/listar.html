@@ -30,7 +30,7 @@ Listagem de Clientes
           <td>{{cliente.cpf_cnpj}}</td>
           <td>{{cliente.telefone}}</td>
           <td>
-            <a href="{% url 'editar_cliente' cliente.id %}">Editar</a>
+            <a href="{% url 'editar_cliente' cliente.id %}"><i class="fas fa-pencil-alt fa-pull-right"></i></a>
           </td>
         </tr>
         {% endfor %}

@@ -9,7 +9,7 @@ def cadastrar_acomodacao(acomodacao):
 
 
 def listar_acomodacoes():
-    return Acomodacao.objects.all()
+    return Acomodacao.objects.order_by("unidade").all()
 
 
 def listar_acomodacao_id(id):

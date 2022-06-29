@@ -68,16 +68,13 @@
               {{form_acomodacao.status|addclass:'form-control'}}
             </div>
           </div>
-        </div>
-        <div class="col-sm">
-          <div class="form-group">
-            <div class="custom-control custom-switch" >
+          <div class="col-sm">
+            <div class="form-group">
               {{form_acomodacao.situacao.errors}}
-              {{form_acomodacao.situacao|addclass:'custom-control-input'}}
-              <label class="custom-control-label" for="customSwitch1">Ativo</label>
+              <label for="situacao">Situação: </label>
+              {{form_acomodacao.situacao|addclass:'form-control'}}
             </div>
-          </div>
-        </div>        
+          </div>      
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary">Salvar</button>

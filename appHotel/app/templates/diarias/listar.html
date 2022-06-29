@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+{% block title%} Listagem de Diárias {% endblock title %}
+
+{% block content %}
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title">Listagem de Diárias</h3>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Cliente:</th>
+          <th>Unidade:</th>
+          <th>Hospedes:</th>
+          <th>Entrada:</th>
+          <th>Saida:</th>
+          <th>Valor:</th>
+          <th>Adiantamento:</th>
+          <th>Observação:</th>
+          <th style="width: 20px">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for diaria in diarias %}
+        <tr>
+          <td>{{diaria.cliente}}</td>
+          <td>{{diaria.unidade}}</td>
+          <td>{{diaria.hospedes}}</td>
+          <td>{{diaria.entrada}}</td>
+          <td>{{diaria.saida}}</td>
+          <td>{{diaria.total_diaria}}</td>
+          {% if diaria.adiantamento != None %}
+            <td>{{diaria.adiantamento}}</td>
+          {% else %}
+            <td align="center">-</td>
+          {% endif %}
+          
+          <td>{{diaria.observacao}}</td>
+          <td>
+            <a href="#"><i class="fas fa-pencil-alt fa-pull-right"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <hr />
+    <a href="{% url 'cadastrar_diarias' %}">
+      <button class="btn btn-primary">Nova Diária</button>
+    </a>
+  </div>
+</div>
+
+{% endblock content %}

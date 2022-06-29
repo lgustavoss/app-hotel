@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import cliente_views, tipoAcomodacao_views, acomodacao_views
+from .views import cliente_views, tipoAcomodacao_views, acomodacao_views, diarias_view
 
 
 urlpatterns = [
@@ -15,8 +15,14 @@ urlpatterns = [
     path('tipo/editar/<int:id>',
          tipoAcomodacao_views.editar_tiposAcomodacao, name='editar_tipos'),
     path('acomodacao/cadastrar', acomodacao_views.cadastrar_acomodacoes,
-         name='acomodacao_cadastrar'),
-    path('acomodacao/listar', acomodacao_views.listar_acomodacoes, name='acomodacao_listar'),
+         name='cadastrar_acomodacao'),
+    path('acomodacao/listar', acomodacao_views.listar_acomodacoes,
+         name='listar_acomodacao'),
     path('acomodacao/editar/<int:id>',
          acomodacao_views.editar_acomodacao, name='editar_acomodacao'),
+    path('diarias/cadastrar', diarias_view.cadastrar_diarias,
+         name='cadastrar_diarias'),
+    path('diarias/listar', diarias_view.listar_diarias, name='listar_diarias'),
+    path('diarias/editar/<int:id>',
+         diarias_view.editar_diarias, name='editar_diarias'),
 ]
